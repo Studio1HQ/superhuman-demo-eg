@@ -3,8 +3,8 @@
 import { Search, Command, Settings, Bell, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { ThemeToggle } from "@/components/theme-toggle";
 import { Badge } from "@/components/ui/badge";
+import { ThemeToggleButton } from "@/hooks/use-theme";
 
 interface TopNavigationProps {
   onMenuClick: () => void;
@@ -57,7 +57,7 @@ export function TopNavigation({ onMenuClick }: TopNavigationProps) {
           <Button variant="ghost" size="icon" className="h-8 w-8 hidden sm:flex">
             <Settings className="h-4 w-4" />
           </Button>
-          <ThemeToggle />
+           <ThemeToggleButton />
         </div>
       </div>
     </div>

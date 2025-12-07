@@ -10,7 +10,7 @@ export default function Home() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   return (
-    <div className="h-screen flex flex-col bg-background">
+    <div className="h-screen flex flex-col bg-background ">
       <TopNavigation onMenuClick={() => setIsSidebarOpen(true)} />
       <div className="flex-1 flex overflow-hidden">
         <Sidebar 

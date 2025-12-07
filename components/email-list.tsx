@@ -102,7 +102,7 @@ export function EmailList() {
   };
 
   return (
-    <div className="flex-1 border-r bg-background min-w-0">
+    <div className="flex-1 border-r bg-background min-w-0 hidden lg:block">
       {/* Header */}
       <div className="border-b p-4">
         <div className="flex items-center justify-between">

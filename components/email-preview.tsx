@@ -42,7 +42,7 @@ GitHub Team`,
 
 export function EmailPreview() {
   return (
-    <div className="flex-1 flex flex-col bg-background min-w-0 hidden lg:flex">
+    <div className="flex-1 flex flex-col bg-background min-w-0">
       {/* Email Header */}
       <div className="border-b p-6">
         <div className="flex items-start justify-between mb-4">
