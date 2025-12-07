@@ -1,6 +1,6 @@
 "use client";
 
-import { Star, Paperclip, Calendar } from "lucide-react";
+import { Star, Paperclip } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import { format } from "date-fns";
