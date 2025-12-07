@@ -100,13 +100,17 @@ kbd {
 }
 
 .prose strong {
-  color: hsl(var(--foreground));
+  /* color: hsl(var(--foreground)); */
   font-weight: 600;
 }
 
 .prose code {
-  background: hsl(var(--muted));
+  /* background: hsl(var(--muted)); */
   padding: 0.125rem 0.25rem;
   border-radius: 0.25rem;
   font-size: 0.875em;
+}
+
+.ProseMirror{
+padding: 10px;
 }

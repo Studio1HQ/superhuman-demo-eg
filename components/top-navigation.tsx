@@ -39,7 +39,7 @@ interface TopNavigationProps {
 }
 
 export function TopNavigation({ onMenuClick }: TopNavigationProps) {
-    const { theme } = useTheme();
+  const { theme } = useTheme();
   const { user, setUser } = useUserStore();
   const { client } = useVeltClient();
   const prevUserRef = useRef(user);
@@ -244,6 +244,7 @@ export function TopNavigation({ onMenuClick }: TopNavigationProps) {
             <VeltNotificationsTool darkMode={theme === "dark"} />
           </div>
           <VeltSidebarButton darkMode={theme === "dark"} />
+          <VeltCommentsSidebar />
 
           <ThemeToggleButton />
         </div>

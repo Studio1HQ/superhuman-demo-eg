@@ -3,9 +3,11 @@
 import { Star, Archive, Trash2, Reply, ReplyAll, Forward, MoveHorizontal as MoreHorizontal } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Separator } from "@/components/ui/separator";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { format } from "date-fns";
+import EmailPreviewComponent from "./ui/EmailPreviewComponent";
+import { VeltComments } from "@veltdev/react";
+import useTheme from "@/hooks/use-theme";
 
 const currentEmail = {
   id: "1",
@@ -15,32 +17,12 @@ const currentEmail = {
   subject: "[bolt-new] New pull request: Fix authentication bug",
   date: new Date(2024, 11, 15, 10, 30),
   isStarred: true,
-  content: `Hi there,
-
-A new pull request has been opened by johndoe in the bolt-new repository.
-
-**Pull Request Details:**
-- Title: Fix authentication bug
-- Author: johndoe
-- Branch: fix-auth-bug
-- Files changed: 3
-
-**Summary:**
-This PR addresses the authentication bug that was causing users to be logged out unexpectedly. The issue was in the token validation logic where expired tokens weren't being handled properly.
-
-**Changes:**
-1. Updated token validation in auth middleware
-2. Added proper error handling for expired tokens  
-3. Improved user session management
-
-You can review the pull request here: https://github.com/bolt-new/pull/123
-
-Best regards,
-GitHub Team`,
   labels: ["work", "github"]
 };
 
 export function EmailPreview() {
+    const theme = useTheme();
+
   return (
     <div className="flex-1 flex flex-col bg-background min-w-0">
       {/* Email Header */}
@@ -62,7 +44,7 @@ export function EmailPreview() {
                 <span className="hidden md:inline">&lt;{currentEmail.senderEmail}&gt;</span>
               </div>
               <span>•</span>
-              <span className="hidden sm:inline">{format(currentEmail.date, 'MMM d, yyyy at h:mm a')}</span>
+              <span className="hidden sm:inline">{format(currentEmail.date, 'MMM d, yyyy')}</span>
               <span className="sm:hidden">{format(currentEmail.date, 'MMM d')}</span>
             </div>
           </div>
@@ -94,14 +76,14 @@ export function EmailPreview() {
       </div>
 
       {/* Email Content */}
-      <div className="flex-1 p-6 overflow-y-auto">
-        <div className="prose prose-neutral dark:prose-invert max-w-none">
-          <div className="whitespace-pre-wrap text-sm leading-relaxed">
-            {currentEmail.content}
-          </div>
-        </div>
-      </div>
-
+      <EmailPreviewComponent/>
+ <VeltComments
+        textMode={false}
+        shadowDom={false}
+        textCommentToolShadowDom={false}
+        darkMode={theme.theme === "dark"}
+      />
+      
       {/* Action Bar */}
       <div className="border-t p-4">
         <div className="flex items-center gap-2">

@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <div className="h-screen flex flex-col bg-background ">
       <TopNavigation onMenuClick={() => setIsSidebarOpen(true)} />
-      <div className="flex-1 flex overflow-hidden">
+      <div className="flex-1 flex">
         <Sidebar 
           isOpen={isSidebarOpen} 
           onClose={() => setIsSidebarOpen(false)} 
