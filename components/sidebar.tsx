@@ -163,7 +163,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
   // Desktop sidebar
   return (
     <div className={cn(
-      "border-r bg-background/50 flex flex-col transition-all duration-300 ease-in-out hidden md:flex",
+      "border-r bg-background/50 flex-col transition-all duration-300 ease-in-out hidden md:flex",
       isCollapsed ? "w-16" : "w-64"
     )}>
       {/* Collapse Toggle */}
