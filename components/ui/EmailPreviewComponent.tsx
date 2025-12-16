@@ -101,7 +101,7 @@ const EmailPreviewComponent = () => {
       )}
 
       {/* Editor Content */}
-      <EditorContent editor={editor} className="p-4"/>
+      <EditorContent editor={editor} />
     </div>
   );
 };

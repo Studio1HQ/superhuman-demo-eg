@@ -88,29 +88,40 @@
 
 /* Keyboard shortcut styling */
 kbd {
-  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
   font-size: 0.75rem;
   font-weight: 500;
   line-height: 1;
 }
 
-/* Email content styling */
+Email content styling
+/* Remove editor focus styling */
+.ProseMirror {
+  outline: none;
+}
+
 .prose {
   color: hsl(var(--foreground));
 }
 
 .prose strong {
-  /* color: hsl(var(--foreground)); */
+  color: hsl(var(--foreground));
   font-weight: 600;
 }
 
 .prose code {
-  /* background: hsl(var(--muted)); */
+  background: hsl(var(--muted));
   padding: 0.125rem 0.25rem;
   border-radius: 0.25rem;
   font-size: 0.875em;
 }
 
-.ProseMirror{
-padding: 10px;
+/* Remove editor focus styling */
+.ProseMirror {
+  outline: none;
+}
+/* Text selection */
+.ProseMirror ::selection {
+  background-color: rgba(168, 85, 247, 0.25);
 }

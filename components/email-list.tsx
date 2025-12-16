@@ -4,6 +4,8 @@ import { Star, Paperclip } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import { format } from "date-fns";
+import { useState } from "react";
+import { EmailModal } from "./email-modal";
 
 interface Email {
   id: string;
@@ -87,11 +89,12 @@ const emails: Email[] = [
   }
 ];
 
+
 export function EmailList() {
   const formatDate = (date: Date) => {
     const now = new Date();
     const diffInHours = (now.getTime() - date.getTime()) / (1000 * 60 * 60);
-    
+
     if (diffInHours < 24) {
       return format(date, 'HH:mm');
     } else if (diffInHours < 48) {
@@ -101,100 +104,117 @@ export function EmailList() {
     }
   };
 
+  const [selectedEmail, setSelectedEmail] = useState<Email | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const handleEmailClick = (email: Email) => {
+    setSelectedEmail(email);
+    setIsModalOpen(true);
+  };
+
   return (
-    <div className="flex-1 border-r bg-background min-w-0 hidden lg:block">
-      {/* Header */}
-      <div className="border-b p-4">
-        <div className="flex items-center justify-between">
-          <h2 className="font-semibold text-lg">Inbox</h2>
-          <Badge variant="secondary" className="text-xs">
-            12 unread
-          </Badge>
+    <>
+      <div className="flex-1 border-r bg-background min-w-0">
+        {/* Header */}
+        <div className="border-b p-4">
+          <div className="flex items-center justify-between">
+            <h2 className="font-semibold text-lg">Inbox</h2>
+            <Badge variant="secondary" className="text-xs">
+              12 unread
+            </Badge>
+          </div>
         </div>
-      </div>
 
-      {/* Email List */}
-      <div className="overflow-y-auto">
-        {emails.map((email, index) => (
-          <div
-            key={email.id}
-            className={cn(
-              "border-b border-border/40 px-4 py-3 cursor-pointer transition-colors hover:bg-muted/30",
-              !email.isRead && "bg-muted/20",
-              index === 0 && "bg-muted/50 border-l-2 border-l-blue-500"
-            )}
-          >
-            <div className="flex items-start gap-3">
-              <div className="flex items-center gap-2 mt-0.5">
-                <div className={cn(
-                  "w-1.5 h-1.5 rounded-full",
-                  !email.isRead ? "bg-blue-500" : "bg-transparent"
-                )} />
-                <Star className={cn(
-                  "h-4 w-4 cursor-pointer",
-                  email.isStarred ? "fill-yellow-400 text-yellow-400" : "text-muted-foreground hover:text-foreground"
-                )} />
-              </div>
+        {/* Email List */}
+        <div className="overflow-y-auto">
+          {emails.map((email, index) => (
+            <div
+              key={email.id}
+              className={cn(
+                "border-b border-border/40 px-4 py-3 cursor-pointer transition-colors hover:bg-muted/30",
+                !email.isRead && "bg-muted/20",
+                index === 1 && "bg-muted/50 border-l-2 border-l-blue-500"
+              )}
+              onClick={() => handleEmailClick(email)}
 
-              <div className="flex-1 min-w-0">
-                <div className="flex items-center justify-between mb-1">
-                  <div className="flex items-center gap-2 min-w-0">
-                    <span className={cn(
-                      "font-medium truncate",
-                      !email.isRead && "font-semibold"
-                    )}>
-                      {email.sender}
+            >
+              <div className="flex items-start gap-3">
+                <div className="flex items-center gap-2 mt-0.5">
+                  <div className={cn(
+                    "w-1.5 h-1.5 rounded-full",
+                    !email.isRead ? "bg-blue-500" : "bg-transparent"
+                  )} />
+                  <Star className={cn(
+                    "h-4 w-4 cursor-pointer",
+                    email.isStarred ? "fill-yellow-400 text-yellow-400" : "text-muted-foreground hover:text-foreground"
+                  )} />
+                </div>
+
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center justify-between mb-1">
+                    <div className="flex items-center gap-2 min-w-0">
+                      <span className={cn(
+                        "font-medium truncate",
+                        !email.isRead && "font-semibold"
+                      )}>
+                        {email.sender}
+                      </span>
+                      {email.isImportant && (
+                        <Badge variant="destructive" className="h-4 text-xs px-1">
+                          Important
+                        </Badge>
+                      )}
+                    </div>
+                    <span className="text-xs text-muted-foreground ml-2 whitespace-nowrap hidden sm:block">
+                      {formatDate(email.date)}
                     </span>
-                    {email.isImportant && (
-                      <Badge variant="destructive" className="h-4 text-xs px-1">
-                        Important
-                      </Badge>
-                    )}
                   </div>
-                  <span className="text-xs text-muted-foreground ml-2 whitespace-nowrap hidden sm:block">
-                    {formatDate(email.date)}
-                  </span>
-                </div>
 
-                <div className="flex items-center justify-between mb-1">
-                  <h3 className={cn(
-                    "text-sm truncate",
-                    !email.isRead ? "font-semibold" : "font-normal"
-                  )}>
-                    {email.subject}
-                  </h3>
-                  <div className="flex items-center gap-1 ml-2">
-                    {email.hasAttachment && (
-                      <Paperclip className="h-3 w-3 text-muted-foreground" />
-                    )}
+                  <div className="flex items-center justify-between mb-1">
+                    <h3 className={cn(
+                      "text-sm truncate",
+                      !email.isRead ? "font-semibold" : "font-normal"
+                    )}>
+                      {email.subject}
+                    </h3>
+                    <div className="flex items-center gap-1 ml-2">
+                      {email.hasAttachment && (
+                        <Paperclip className="h-3 w-3 text-muted-foreground" />
+                      )}
+                    </div>
                   </div>
-                </div>
 
-                <p className="text-sm text-muted-foreground truncate hidden sm:block">
-                  {email.preview}
-                </p>
+                  <p className="text-sm text-muted-foreground truncate hidden sm:block">
+                    {email.preview}
+                  </p>
 
-                {/* Mobile date */}
-                <div className="sm:hidden mt-1">
-                  <span className="text-xs text-muted-foreground">
-                    {formatDate(email.date)}
-                  </span>
-                </div>
-
-                {email.labels.length > 0 && (
-                  <div className="flex gap-1 mt-2">
-                    {email.labels.map((label) => (
-                      <Badge key={label} variant="outline" className="h-5 text-xs px-1.5">
-                        {label}
-                      </Badge>
-                    ))}
+                  {/* Mobile date */}
+                  <div className="sm:hidden mt-1">
+                    <span className="text-xs text-muted-foreground">
+                      {formatDate(email.date)}
+                    </span>
                   </div>
-                )}
+
+                  {email.labels.length > 0 && (
+                    <div className="flex gap-1 mt-2">
+                      {email.labels.map((label) => (
+                        <Badge key={label} variant="outline" className="h-5 text-xs px-1.5">
+                          {label}
+                        </Badge>
+                      ))}
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
-    </div>
+      <EmailModal
+        email={selectedEmail}
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+      />
+    </>
+
   );
 }
