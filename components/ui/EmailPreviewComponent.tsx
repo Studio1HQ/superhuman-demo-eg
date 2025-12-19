@@ -18,6 +18,7 @@ const EDITOR_ID = "superhuman-demo-email";
 const EmailPreviewComponent = () => {
   // Initialize Tiptap editor
   const editor = useEditor({
+
     extensions: [
       TiptapVeltComments.configure({
         persistVeltMarks: false,
@@ -73,8 +74,9 @@ const EmailPreviewComponent = () => {
     }
   }, [editor, annotations]);
 
-  // Add comment handler
-  const onClickComments = () => {
+  // Add comment handler - stop propagation to prevent parent elements from capturing events
+  const onClickComments = (e: React.MouseEvent) => {
+    e.stopPropagation();
     if (editor) {
       addComment({
         editor,

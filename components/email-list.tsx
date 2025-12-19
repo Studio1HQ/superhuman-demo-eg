@@ -106,7 +106,8 @@ export function EmailList() {
 
   const [selectedEmail, setSelectedEmail] = useState<Email | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const handleEmailClick = (email: Email) => {
+  const handleEmailClick = (e: React.MouseEvent, email: Email) => {
+    e.stopPropagation();
     setSelectedEmail(email);
     setIsModalOpen(true);
   };
@@ -134,7 +135,7 @@ export function EmailList() {
                 !email.isRead && "bg-muted/20",
                 index === 1 && "bg-muted/50 border-l-2 border-l-blue-500"
               )}
-              onClick={() => handleEmailClick(email)}
+              onClick={(e) => handleEmailClick(e, email)}
 
             >
               <div className="flex items-start gap-3">
