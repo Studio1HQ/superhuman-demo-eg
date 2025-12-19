@@ -38,8 +38,6 @@ A collaborative email client built with Next.js, React, Tailwind CSS, and [Velt]
 
 - **Icons**: [Lucide React](https://lucide.dev/)
 
-- **Other**: [Shad CN](https://ui.shadcn.com/)
-
 ---
 
 ## Prerequisites
@@ -55,33 +53,25 @@ A collaborative email client built with Next.js, React, Tailwind CSS, and [Velt]
 1. Clone the repository
 
    ```bash
-
    git clone <repository-url>
-
    ```
 
 2. Navigate to the `superhuman` directory
 
    ```bash
-
    cd superhuman
-
    ```
 
 3. Install dependencies:
 
    ```bash
-
    npm install
-
    ```
 
 4. Create a `.env.local` file with your Velt API key:
 
    ```
-
    NEXT_PUBLIC_VELT_ID=your_api_key_here
-
    ```
 
    > Note: You can get your API key from the [Velt Dashboard](https://app.velt.dev)
@@ -89,9 +79,7 @@ A collaborative email client built with Next.js, React, Tailwind CSS, and [Velt]
 5. Run the development server:
 
    ```bash
-
    npm run dev
-
    ```
 
 6. Open [http://localhost:3000](http://localhost:3000) in your browser
@@ -99,43 +87,24 @@ A collaborative email client built with Next.js, React, Tailwind CSS, and [Velt]
 ## Project Structure
 
 ```
-
 superhuman/
-
 ├── app/                 # Next.js app directory
-
 │   ├── (app)/          # Main app routes
-
 │   └── layout.tsx      # Root layout
-
 ├── components/          # React components
-
 │   ├── email-list.tsx  # Email inbox list component
-
 │   ├── email-preview.tsx # Email preview component
-
 │   ├── sidebar.tsx     # Navigation sidebar
-
 │   ├── top-navigation.tsx # Top navigation bar
-
 │   ├── theme-toggle.tsx # Theme toggle component
-
-│   └── ui/             # UI components (shadcn/ui)
-
+│   └── ui/             # UI components (shadcn/ui + custom-dialog box component)
 ├── helper/              # Helper functions
-
 │   └── userdb.ts       # User database/store
-
 ├── hooks/              # Custom React hooks
-
 │   └── use-theme.tsx   # Theme management hook
-
 ├── lib/                # Utility functions
-
 │   └── utils.ts        # Utility functions
-
 └── public/             # Static assets
-
 ```
 
 ## Velt Integration
@@ -211,6 +180,7 @@ The application uses the following Velt configurations:
 4. **Theme Issues**
 
    - Clear browser localStorage if theme persists incorrectly
+
 ## Documentation
 
 ### Velt Resources
@@ -238,4 +208,3 @@ Feel free to submit issues and enhancement requests. For major changes, please o
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
-
