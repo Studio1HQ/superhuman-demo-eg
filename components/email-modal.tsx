@@ -42,7 +42,56 @@ interface EmailModalProps {
     isOpen: boolean;
     onClose: () => void;
 }
+const content=`  <p>Hi team,</p>
 
+  <p>
+    I hope this email finds you well! I wanted to schedule our
+    <strong>Q4 planning meeting</strong> for
+    <strong>December 20th at 2:00 PM</strong> in the
+    <strong>main conference room</strong>.
+  </p>
+
+  <h3>Meeting Agenda:</h3>
+  <ul>
+    <li>Review Q3 performance metrics</li>
+    <li>Discuss Q4 goals and objectives</li>
+    <li>Budget allocation for upcoming projects</li>
+    <li>Team resource planning</li>
+    <li>Holiday schedule coordination</li>
+  </ul>
+
+  <h3>What to Prepare:</h3>
+  <p>
+    Please come prepared with your department's
+    <strong>Q3 summary</strong> and
+    <strong>Q4 project proposals</strong>.
+    I've attached the meeting template for your reference.
+  </p>
+
+  <h3>Meeting Details:</h3>
+  <p>
+    <strong>Location:</strong> Main Conference Room (Building A, 3rd Floor)<br />
+    <strong>Duration:</strong> Approximately 2 hours<br />
+    <strong>Remote Option:</strong> Zoom link will be shared closer to the date
+  </p>
+
+  <p>
+    Looking forward to a productive discussion and planning session.
+    Please confirm your attendance by replying to this email.
+  </p>
+
+  <p>
+    If you have any questions or agenda items to add, feel free to reach out.
+  </p>
+
+  <p>
+    Best regards,<br />
+    <strong>Sarah Johnson</strong><br />
+    Senior Project Manager<br />
+    Company Inc.
+  </p>
+
+</body>`
 export function EmailModal({ email, isOpen, onClose }: EmailModalProps) {
     if (!email) return null;
 
@@ -98,7 +147,7 @@ export function EmailModal({ email, isOpen, onClose }: EmailModalProps) {
                         </div>
                     </div>
                     <div className="flex-1 p-6 overflow-y-auto" onClick={(e) => e.stopPropagation()}>
-                        <EmailPreviewComponent />
+                        <EmailPreviewComponent content={content} />
                     </div>
 
                     {/* Action Bar */}

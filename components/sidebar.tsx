@@ -12,7 +12,8 @@ import {
   Zap,
   ChevronLeft,
   ChevronRight,
-  X
+  X,
+  File
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -28,7 +29,8 @@ interface SidebarItem {
 }
 
 const mainItems: SidebarItem[] = [
-  { icon: Inbox, label: "Inbox", count: 12, active: true },
+  { icon: Inbox, label: "Inbox", count: 12, },
+  { icon: File, label: "Draft", count: 2, active: true },
   { icon: Star, label: "Important", count: 3 },
   { icon: Send, label: "Sent" },
   { icon: Clock, label: "Snoozed", count: 2 },

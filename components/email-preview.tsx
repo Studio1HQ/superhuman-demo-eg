@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { format } from "date-fns";
+import EmailPreviewComponent from "./ui/EmailPreviewComponent";
 
 const currentEmail = {
     id: "2",
@@ -16,32 +17,37 @@ const currentEmail = {
     subject: "Q4 Planning Meeting - December 20th",
     date: new Date(2024, 11, 15, 9, 15),
     isStarred: false,
-    content: `Hi team,
+    content: ` <div>
+        <h2>Hi there,</h2>
+        <p>A new pull request has been opened by <strong>johndoe</strong> in the <strong>bolt-new</strong> repository.</p>
 
-I hope this email finds you well! I wanted to schedule our Q4 planning meeting for December 20th at 2 PM in the main conference room.
+        <div>
+            <h3>Pull Request Details:</h3>
+            <ul>
+                <li><strong>Title:</strong> Fix authentication bug</li>
+                <li><strong>Author:</strong> johndoe</li>
+                <li><strong>Branch:</strong> fix-auth-bug</li>
+                <li><strong>Files changed:</strong> 3</li>
+            </ul>
+        </div>
 
-Meeting Agenda:
-• Review Q3 performance metrics
-• Discuss Q4 goals and objectives
-• Budget allocation for upcoming projects
-• Team resource planning
-• Holiday schedule coordination
+        <div>
+            <h3>Summary:</h3>
+            <p>This PR addresses the authentication bug that was causing users to be logged out unexpectedly. The issue was in the token validation logic.</p>
+        </div>
 
-What to Prepare:
-Please come prepared with your department's Q3 summary and Q4 project proposals. I've attached the meeting template for your reference.
+        <div>
+            <h3>Changes:</h3>
+            <ul>
+                <li>Added proper error handling for expired tokens</li>
+                <li>Improved user session management</li>
+            </ul>
+        </div>
 
-Location: Main Conference Room (Building A, 3rd Floor)
-Duration: Approximately 2 hours
-Remote Option: Zoom link will be shared closer to the date
+        <p>You can review the pull request here: <a href="https://github.com/bolt-new/pull/123" class="link">https://github.com/bolt-new/pull/123</a></p>
 
-Looking forward to a productive discussion and planning session. Please confirm your attendance by replying to this email.
-
-If you have any questions or agenda items to add, feel free to reach out.
-
-Best regards,
-Sarah Johnson
-Senior Project Manager
-Company Inc.`,
+        <p>Best regards,<br>GitHub Team</p>
+    </div>`,
     labels: ["work", "meetings"],
     profile: {
         name: "Sarah Johnson",
@@ -112,11 +118,7 @@ export function EmailPreview() {
 
                 {/* Email Content */}
                 <div className="flex-1 p-6 overflow-y-auto max-h-[calc(100vh-330px)]">
-                    <div className="prose prose-neutral dark:prose-invert max-w-none">
-                        <div className="whitespace-pre-wrap text-sm leading-relaxed">
-                            {currentEmail.content}
-                        </div>
-                    </div>
+                    <EmailPreviewComponent content={currentEmail.content} />
                 </div>
 
                 {/* Action Bar */}
